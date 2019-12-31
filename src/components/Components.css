@@ -1,0 +1,33 @@
+.page-container {
+    font-family: "Kulim Park";
+    position:fixed;
+    padding:0 20vw 20vw;
+    margin:0;
+    top:50px;
+    left:0;
+    width: 100vw;
+    height: calc(100vh - 50px);
+}
+
+#home-page-container {
+    background-color: lightgreen;
+}
+
+#about-page-container {
+    background-color: lightcoral;
+}
+
+#contact-page-container {
+    background-color: lightcyan;
+}
+
+.fade-enter {
+    opacity: 0;
+    z-index: 1;
+}
+  
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 0.15s ease-in;
+}
+
