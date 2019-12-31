@@ -1,2 +1,2 @@
-# Charya's Development Blog #
+# My Development Blog #
 
