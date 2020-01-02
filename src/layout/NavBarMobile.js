@@ -1,7 +1,7 @@
 // MODULES
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu } from "react-icons/fi";
 
 // COMPONENTS
 import { License } from "./License.js";
