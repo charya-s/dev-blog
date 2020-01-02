@@ -1,24 +1,33 @@
 .page-container {
     font-family: "Kulim Park";
     position:fixed;
-    padding:0 20vw 20vw;
     margin:0;
-    top:50px;
+    top: 0;
     left:0;
     width: 100vw;
-    height: calc(100vh - 50px);
+    z-index: -1;
+}
+
+.page-container-browser {  
+    padding: 7.5vh 25vw 0 25vw;
+    height: calc(100vh - 55px);
+}
+
+.page-container-mobile {  
+    padding: 2.5vh 10vw 0 10vw;
+    height: 100vh;
 }
 
 #home-page-container {
-    background-color: lightgreen;
+    background-color: #FBFBFB;
 }
 
 #about-page-container {
-    background-color: lightcoral;
+    background-color: #FBFBFB;
 }
 
 #contact-page-container {
-    background-color: lightcyan;
+    background-color: #FBFBFB;
 }
 
 .fade-enter {
