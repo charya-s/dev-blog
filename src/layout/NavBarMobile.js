@@ -10,7 +10,7 @@ import { License } from "./License.js";
 import "../Styles.css";
 import "./Layout.css";
 
-export const NavBarMobile = () => {
+export const NavBarMobile = (props) => {
 
     const [drawer, setDrawer] = useState(false);
 
@@ -27,6 +27,14 @@ export const NavBarMobile = () => {
                         <li><Link to="/" onClick={() => setDrawer(false)}>Home</Link></li>
                         <li><Link to="/about" onClick={() => setDrawer(false)}>About</Link></li>
                         <li><Link to="/contact" onClick={() => setDrawer(false)}>Contact</Link></li>
+                        {
+                        props.user.displayName !== "" ?
+                            <>  
+                                <li><div className="sign-io-mobile" onClick={ () => props.signOut().then(window.location.reload()) }>Sign Out</div></li>
+                            </>
+                        :
+                            <li><div className="sign-io-mobile" onClick={ props.signIn }>Sign In</div></li>
+                        }
                     </ul>
                 </nav>
                 <License />

@@ -34,7 +34,7 @@
     transition: 0.2s;
 }
 
-#nav-bar-desktop-container ul li a {
+#nav-bar-desktop-container ul li a, .sign-io-desktop {
     text-decoration: none;
     color: inherit;
     line-height: 50px;
@@ -110,7 +110,7 @@
     height: 7.5vh;
 }
 
-#nav-bar-mobile-inner-container nav ul li a {
+#nav-bar-mobile-inner-container nav ul li a, .sign-io-mobile {
     text-decoration: none;
     color: white;
     font-size: 150%;
