@@ -10,6 +10,8 @@ import "./Layout.css";
 
 export const NavBarDesktop = (props) => {
 
+    console.log(props);
+
     return(
         <>
             <nav id="nav-bar-desktop-container">
@@ -18,12 +20,13 @@ export const NavBarDesktop = (props) => {
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
                     {
-                        props.user.displayName !== "" ?
+                        props.user !== null ?
                             <>  
                                 <li><div className="sign-io-desktop" onClick={ () => props.signOut().then(window.location.reload()) }>Sign Out</div></li>
+                                <li className="user-dp-cont"><img className="user-dp" src={props.user.photoURL} alt="user_dp"/></li>
                             </>
                         :
-                            <li><div className="sign-io-desktop" onClick={ props.signIn }>Sign In</div></li>
+                            <li><div className="sign-io-desktop" onClick={ () => props.signIn() }>Sign In</div></li>
                     }
                 </ul>
             </nav>

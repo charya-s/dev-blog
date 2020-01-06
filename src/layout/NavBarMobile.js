@@ -28,12 +28,12 @@ export const NavBarMobile = (props) => {
                         <li><Link to="/about" onClick={() => setDrawer(false)}>About</Link></li>
                         <li><Link to="/contact" onClick={() => setDrawer(false)}>Contact</Link></li>
                         {
-                        props.user.displayName !== "" ?
+                        props.user !== null ?
                             <>  
-                                <li><div className="sign-io-mobile" onClick={ () => props.signOut().then(window.location.reload()) }>Sign Out</div></li>
+                                <li><div className="sign-io-mobile" onClick={ () => props.signOut().then(() => {window.location.reload(); setDrawer(false);}) }>Sign Out</div></li>
                             </>
                         :
-                            <li><div className="sign-io-mobile" onClick={ props.signIn }>Sign In</div></li>
+                            <li><div className="sign-io-mobile" onClick={ () => {props.signIn(); setDrawer(false)} }>Sign In</div></li>
                         }
                     </ul>
                 </nav>

@@ -1,10 +1,10 @@
 export const firebaseConfig = {
-    apiKey: "AIzaSyCRUnMsagp1p-77xmRzm5lSIWz25wwgXFI",
-    authDomain: "the-blog-4fe44.firebaseapp.com",
-    databaseURL: "https://the-blog-4fe44.firebaseio.com",
-    projectId: "the-blog-4fe44",
-    storageBucket: "the-blog-4fe44.appspot.com",
-    messagingSenderId: "335831923270",
-    appId: "1:335831923270:web:f6b143adfc138fd767e847",
-    measurementId: "G-LMLP3EX1YF"
-  };
+  apiKey: "AIzaSyD9qZdP5BH_JmvYZrr5Q6UqrhkhkIFSwRI",
+  authDomain: "charya-site.firebaseapp.com",
+  databaseURL: "https://charya-site.firebaseio.com",
+  projectId: "charya-site",
+  storageBucket: "charya-site.appspot.com",
+  messagingSenderId: "515434620182",
+  appId: "1:515434620182:web:b2c3e7c93a9da568c49c37",
+  measurementId: "G-JBLPR11TNV"
+};

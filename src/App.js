@@ -1,11 +1,10 @@
 // MODULES
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Route, Switch } from "react-router-dom";
 import { TransitionGroup, CSSTransition  } from "react-transition-group";
 import { BrowserView, MobileView } from "react-device-detect";
 
 // FIREBASE
-import withFirebaseAuth from 'react-with-firebase-auth'
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import { firebaseConfig } from './firebaseConfig';
@@ -21,63 +20,63 @@ import { About } from "./components/About.js";
 import { Contact } from "./components/Contact.js";
 
 
+
+/************************************************************************************ */
+/* FIREBASE SETUP */
+
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-var user = {displayName: "", photoURL: ""};
+
+var googleProvider = new firebase.auth.GoogleAuthProvider();
+
+const signInWithGoogle = () => firebaseApp.auth().signInWithPopup(googleProvider); 
+
+const signOut = () => firebaseApp.auth().signOut(); 
+
+/************************************************************************************ */
 
 
-class App extends Component {
 
-  constructor() {
-    super();
-    this.state = { toggle: false }
-  }
+const App = () => {
 
-  render() {
-    const {signOut, signInWithGoogle} = this.props;
+  const [user, setUser] = useState(null);
 
-    return (
-      <>
+  firebaseApp.auth().onAuthStateChanged((result) => {
+    setUser(result);
+  });
 
-        <BrowserView>
-          <NavBarDesktop user={user} signIn={signInWithGoogle} signOut={signOut} />
-        </BrowserView>
+  return (
+    <>
 
-        <MobileView>
-          <NavBarMobile user={user} signIn={signInWithGoogle} signOut={signOut} />
-        </MobileView>
+      <BrowserView>
+        <NavBarDesktop user={user} signIn={signInWithGoogle} signOut={signOut} />
+      </BrowserView>
 
-        <Route render={({ location }) => (
-          <TransitionGroup>
-            <CSSTransition key={ location.key } timeout={500} classNames="fade">
-              <Switch location={ location }>
-                <Route path="/" component={() => <Home user={user} /> } exact />
-                <Route path="/about" component={About} />
-                <Route path="/contact" component={Contact}  />
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>      
-        )} />
+      <MobileView>
+        <NavBarMobile user={user} signIn={signInWithGoogle} signOut={signOut} />
+      </MobileView>
 
-        <BrowserView>
-          <License />
-        </BrowserView>
-      </>
-    );
-  }
+      <Route render={({ location }) => (
+        <TransitionGroup>
+          <CSSTransition key={ location.key } timeout={500} classNames="fade">
+            <Switch location={ location }>
+              <Route path="/" component={() => <Home user={user} /> } exact />
+              <Route path="/about" component={About} />
+              <Route path="/contact" component={Contact}  />
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>      
+      )} />
+
+      <BrowserView>
+        <License />
+      </BrowserView>
+
+    </>
+  );
+  
 }
 
 
-const firebaseAppAuth = firebaseApp.auth();
-firebase.auth().onAuthStateChanged(function(newUser) {
-  if (newUser) {
-    user.displayName = newUser.displayName;
-    user.photoURL = newUser.photoURL;
-  }
-});
-
-const providers = { googleProvider: new firebase.auth.GoogleAuthProvider(), };
 
 
-export default withFirebaseAuth({
-  providers, firebaseAppAuth
-})(App);
+export default App;
