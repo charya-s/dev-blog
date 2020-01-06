@@ -7,7 +7,9 @@ import { BrowserView, MobileView } from "react-device-detect";
 // FIREBASE
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 import { firebaseConfig } from './firebaseConfig';
+
 
 // LAYOUT
 import { NavBarDesktop } from "./layout/NavBarDesktop.js";
@@ -23,14 +25,19 @@ import { Contact } from "./components/Contact.js";
 
 /************************************************************************************ */
 /* FIREBASE SETUP */
-
 const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+// AUTHENTICATION
+const firebaseAuth = firebaseApp.auth();
 
 var googleProvider = new firebase.auth.GoogleAuthProvider();
 
-const signInWithGoogle = () => firebaseApp.auth().signInWithPopup(googleProvider); 
+const signInWithGoogle = () => firebaseAuth.signInWithPopup(googleProvider); 
 
-const signOut = () => firebaseApp.auth().signOut(); 
+const signOut = () => firebaseAuth.signOut(); 
+
+// CLOUDSTORE
+const firebaseDB = firebaseApp.firestore();
 
 /************************************************************************************ */
 
@@ -40,7 +47,7 @@ const App = () => {
 
   const [user, setUser] = useState(null);
 
-  firebaseApp.auth().onAuthStateChanged((result) => {
+  firebaseAuth.onAuthStateChanged((result) => {
     setUser(result);
   });
 
@@ -59,9 +66,9 @@ const App = () => {
         <TransitionGroup>
           <CSSTransition key={ location.key } timeout={500} classNames="fade">
             <Switch location={ location }>
-              <Route path="/" component={() => <Home user={user} /> } exact />
-              <Route path="/about" component={About} />
-              <Route path="/contact" component={Contact}  />
+              <Route path="/" component={() => <Home user={user} db={firebaseDB} /> } exact />
+              <Route path="/about" component={About} db={firebaseDB} />
+              <Route path="/contact" component={Contact} db={firebaseDB} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>      
@@ -75,7 +82,6 @@ const App = () => {
   );
   
 }
-
 
 
 
