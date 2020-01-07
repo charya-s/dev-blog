@@ -6,6 +6,7 @@
     left:0;
     width: 100vw;
     z-index: -1;
+    background-color: #FBFBFB;
 }
 
 .page-container-browser {  
@@ -14,23 +15,18 @@
 }
 
 .page-container-mobile {  
-    padding: 3.5vh 10vw 0 10vw;
+    width: 100vw;
     height: 100vh;
 }
 
-#home-page-container {
-    background-color: #FBFBFB;
+.desktop-heading {
+    font-size: 300%;
+    margin-top: 2.5vh;
 }
 
-#about-page-container {
-    background-color: #FBFBFB;
-}
-
-#contact-page-container {
-    background-color: #FBFBFB;
-}
-
-.mobile-heading{
+.mobile-heading {
+    margin-top: 5vh;
+    padding: 0 10vw;
     font-size: 200%;
 }
 
@@ -44,3 +40,13 @@
     transition: opacity 0.15s ease-in;
 }
 
+
+/* BODY */
+.page-body-mobile {
+    padding: 0 10vw;
+    margin-top: 5vh;
+}
+
+.page-body-browser {
+    margin-top: 5vh;
+}

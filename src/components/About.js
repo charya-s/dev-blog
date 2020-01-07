@@ -9,7 +9,7 @@ import "./Components.css";
 export const About = () => {
     return(
         <div id="about-page-container" className={`page-container page-container-${isBrowser ? "browser" : "mobile"}`}>
-            <h1 className={isMobile ? "mobile-heading" : ""}>About Me.</h1>
+            <h1 className={isMobile ? "mobile-heading" : "desktop-heading"}>About Me.</h1>
         </div>
     );
 }

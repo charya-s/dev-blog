@@ -27,6 +27,11 @@ export const NavBarMobile = (props) => {
                         <li><Link to="/" onClick={() => setDrawer(false)}>Home</Link></li>
                         <li><Link to="/about" onClick={() => setDrawer(false)}>About</Link></li>
                         <li><Link to="/contact" onClick={() => setDrawer(false)}>Contact</Link></li>
+
+                        {
+                            props.admin > 5 ? <li><Link to="/admin" onClick={() => setDrawer(false)}>Admin</Link></li> : null
+                        }
+
                         {
                         props.user !== null ?
                             <>  

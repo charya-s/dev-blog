@@ -5,6 +5,7 @@
     padding: 0;
 }
 
-h1 {
-    font-size: 300%;
+body {
+    width: 100vw;
+    height: 100vh;
 }
