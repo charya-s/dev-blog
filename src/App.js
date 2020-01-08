@@ -31,6 +31,7 @@ const App = () => {
 
   const [user, setUser] = useState(null);
   const [admin, setAdmin] = useState(null);
+  const [currentPath, setCurrentPath] = useState(null);
 
   // Get the user data when authorization is given or removed.
   firebase.auth().onAuthStateChanged((result) => {
@@ -47,17 +48,17 @@ const App = () => {
       <button onClick={ () => console.log(admin)} >TEST</button> {/* Used for doing tons of stuff.*/}
 
       <BrowserView>
-        <NavBarDesktop user={user} signIn={signInWithGoogle} signOut={signOut} admin={admin} />
+        <NavBarDesktop user={user} signIn={signInWithGoogle} signOut={signOut} admin={admin} path={currentPath} />
       </BrowserView>
 
       <MobileView>
-        <NavBarMobile user={user} signIn={signInWithGoogle} signOut={signOut} admin={admin} />
+        <NavBarMobile user={user} signIn={signInWithGoogle} signOut={signOut} admin={admin} path={currentPath} />
       </MobileView>
 
       <Route render={({ location }) => (
         <TransitionGroup>
           <CSSTransition key={ location.key } timeout={500} classNames="fade">
-            <Switch location={ location }>
+            <Switch location={ location } onChange={setCurrentPath(location.pathname.split("/")[1])}>
 
               {/* USABLE PAGES */}
               <Route path="/" component={() => <Home user={user} db={firebaseDB} /> } exact />
@@ -77,7 +78,7 @@ const App = () => {
       )} />
 
       <BrowserView>
-        <License />
+        <License color={currentPath==="" ? "white" : null}/>
       </BrowserView>
 
     </>

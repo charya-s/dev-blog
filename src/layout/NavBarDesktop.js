@@ -3,18 +3,16 @@ import { Link } from "react-router-dom";
 
 // COMPONENTS
 
-
 // CSS
 import "../Styles.css";
 import "./Layout.css";
 
-export const NavBarDesktop = (props) => {
 
-    console.log(props);
+export const NavBarDesktop = (props) => { 
 
     return(
         <>
-            <nav id="nav-bar-desktop-container">
+            <nav id={`nav-bar-desktop-${props.path==="" ? "home" : props.path}-container`} className="nav-bar-desktop-container" >
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/about">About</Link></li>

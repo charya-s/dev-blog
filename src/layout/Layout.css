@@ -4,7 +4,7 @@
 }
 
 /* NAVIGATION BAR DESKTOP */
-#nav-bar-desktop-container {
+.nav-bar-desktop-container {
     background-color: white;
     position: relative;
     top: 0vh;
@@ -12,9 +12,10 @@
     margin:0;
     background-color: rgba(0,0,0,0);
     z-index: 99;
+    transition: 0.5s;
 }
 
-#nav-bar-desktop-container ul {
+.nav-bar-desktop-container ul {
     overflow: hidden;
     position: relative;
     float: right;
@@ -22,18 +23,19 @@
     right: 25vw;
     margin: 0;
     list-style-type: none;
+    transition: 0.5s;
 }
   
-#nav-bar-desktop-container ul li {
+.nav-bar-desktop-container ul li {
     float: left;
     display: block;
     margin: 0;
     text-align: center;
     color: black;
-    transition: 0.2s;
+    transition: 0.25s;
 }
 
-#nav-bar-desktop-container ul li a, .sign-io-desktop {
+.nav-bar-desktop-container ul li a, .sign-io-desktop {
     text-decoration: none;
     color: inherit;
     line-height: 50px;
@@ -60,14 +62,26 @@
     cursor: default;
 }
 
-#nav-bar-desktop-container ul li:hover {
+.nav-bar-desktop-container ul li:hover {
     cursor: pointer;
     color: lightseagreen;
     transition: 0.25s;
 }
 
+/* HOME PAGE NAVBAR DESKTOP */
+#nav-bar-desktop-home-container {
+    top: 65vh;
+    transition: 0.5s;
+}
 
-/* NAVIGATION BAR DESKTOP */
+#nav-bar-desktop-home-container ul {
+    right: 50vw;
+    transition: 0.5s;
+    transform: translate(50%, 0);
+}
+
+
+/* NAVIGATION BAR MOBILE */
 #nav-bar-mobile-container {
     background-color: white;
     position: absolute;

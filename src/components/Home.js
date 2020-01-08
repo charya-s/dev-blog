@@ -1,6 +1,7 @@
 // MODULES
 import React, { useState, useEffect } from "react";
 import { isMobile, isBrowser } from "react-device-detect";
+import { Loader } from "semantic-ui-react";
 import { Markup } from "interweave";
 
 // LAYOUT
@@ -21,23 +22,27 @@ export const Home = (props) => {
   useEffect(() => {
     let inProgress = false;
 
-    props.db.collection("posts").where("title", "==", "Post 1").get().then(result => {
+    props.db.collection("posts").where("title", "==", "Home Page").get().then(result => {
       if (!inProgress) { setBody(result.docs[0].data().body); setLoading(false); };
     }).catch(error => console.log(error));
 
     return () => { inProgress = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(body);
-
   return(
-    <div id="home-page-container" className={`page-container page-container-${isBrowser ? "browser" : "mobile"}`}>
-      <h1 className={isMobile ? "mobile-heading" : "desktop-heading"}>Heyo{props.user !== null ? ` ${userName}` : ""}. </h1>
-      
-      <div className={`page-body page-body-${isBrowser ? "browser" : "mobile"}`} id="home-body">
-          <Markup content={body} />
-          <LoaderComponent />
-      </div>
+    <div id={`home-page-container-${isBrowser ? "desktop" : "mobile"}`} className={`page-container page-container-${isBrowser ? "browser" : "mobile"}`}>
+      { loading ?
+        <Loader active={true} />
+      :
+        <div className = {`home-page-loaded-${!loading}`} >
+          <h1 className={`${isMobile ? "mobile" : "desktop"}-heading`}>Heyo{props.user !== null ? ` ${userName}` : ""}! </h1>
+          
+          <div className={`page-body page-body-${isBrowser ? "browser" : "mobile"}`} id="home-body">
+              <h2>I'm Charya.</h2>
+          </div>
+        </div>
+      }
     </div>
   );
 }
